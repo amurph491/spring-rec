@@ -8,11 +8,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.context.annotation.Bean
 import org.springframework.beans.factory.annotation.Autowired
 
-val FAN_KEYSPACE: String = "fans"
 @Slf4j
 @SpringBootApplication
 class VideorecApplication {
-    val CASSANDRA_KEYSPACE = CassandraKeyspace.onLocalhost()
     @Autowired
     lateinit var repository: FanRepository
     @Autowired
@@ -21,7 +19,6 @@ class VideorecApplication {
 
     @Bean
     fun init() = CommandLineRunner {
-        session.execute("CREATE KEYSPACE $FAN_KEYSPACE")
         val f1 = Fan(
                 "amurph491",
                 "Alex",
