@@ -2,6 +2,7 @@ package com.amurph491.videorec
 
 import com.datastax.driver.core.Session
 import junit.framework.Assert.*
+import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
@@ -18,6 +19,17 @@ class VideorecApplicationTests {
 
     @Autowired
     lateinit var session: Session
+
+    @Before
+    fun prepareDatabase() {
+        repository.deleteAll()
+        val f1 = Fan(
+                "amurph491",
+                "Alex",
+                "Murphy");
+
+        repository.save(f1)
+    }
 
 	@Test
 	fun contextLoads() {
